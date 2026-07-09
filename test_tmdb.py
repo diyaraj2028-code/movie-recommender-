@@ -2,16 +2,15 @@ import requests
 import os
 from dotenv import load_dotenv
 
+API_URL='https://api.themoviedb.org/3/movie/popular'
+
 load_dotenv()
 
 api_key = os.getenv("API_KEY")
-api_url = os.getenv("API_URL")
 
-headers = {"Authorization": f"Bearer {api_key}"}
+params = {'api_key': api_key}
 
-url = f"{api_url}?api_key={api_key}"
-
-response = requests.get(url)
+response = requests.get(API_URL, params=params)
 
 if response.status_code == 200: 
   data = response.json()
