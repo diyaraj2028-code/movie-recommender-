@@ -52,4 +52,20 @@ def discover_by_genre(genre_id):
   print(response.text)
   return None
 
+def get_imdb_id(movie_id): 
+  api_url = f'https://api.themoviedb.org/3/movie/{movie_id}/external_ids'
+  api_key = os.getenv("API_KEY")
+  params = {'api_key': api_key}
+
+  response = requests.get(api_url, params=params)
+  if response.status_code == 200: 
+    data = response.json()
+    return data.get('imdb_id')
+  print(f"Failed to fetch data. Status code: {response.status_code}")
+  print(response.text)
+  return None
+
+
+
+
 
